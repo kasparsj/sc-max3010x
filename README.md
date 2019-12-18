@@ -1,6 +1,6 @@
 # sc-max3010x
 
-Supercollider plugin to read data from MAX30102 and MAX30105 over i2c.
+SuperCollider plugin to read data from MAX30102 and MAX30105 over i2c.
 
 Based on https://github.com/jpburstrom/sc-mpu9250
 
@@ -16,13 +16,15 @@ This project will build:
     cmake -DCMAKE_BUILD_TYPE=Release -DSC_PATH=/path/to/supercollider/source ../
     make 
 
-### To run:
+### To test / debug:
 
-    sudo ./build/apps/MAX30105_debug/MAX30105_debug
+    ./build/apps/MAX30105_debug/MAX30105_debug
+    
+### To install SuperCollider extension
 
-### To build a debug version:
+    cp plugin/MAX30105.so ~/.local/share/SuperCollider/Extensions/MAX30105/plugins/
+    cp plugin/MAX30105.sc ~/.local/share/SuperCollider/Extensions/MAX30105/classes/
+    
+### In SuperCollider
 
-    mkdir debug
-    cd debug
-    cmake -DCMAKE_BUILD_TYPE=Debug -DSC_PATH=/path/to/supercollider/source ../
-    make 
+    { Max30102.kr(0) * WhiteNoise.ar!2 * 0.1 }.play; // white noise modulated by pulse
